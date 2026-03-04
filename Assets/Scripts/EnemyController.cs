@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using System.Linq;　　　//　<=　宣言を追加
+using System.Linq;
 
 
 public class EnemyController : MonoBehaviour
@@ -15,12 +15,68 @@ public class EnemyController : MonoBehaviour
 
     private Vector3[] paths;
 
+    private Animator anim;　　　　　　 // Animator コンポーネントの取得用
+
+    private Vector3 currentPos;    // 敵キャラの現在の位置情報
+
+
     void Start()
     {
+
+        // Animator コンポーネントを取得して anim 変数に代入
+        TryGetComponent(out anim);
+
         // 移動する地点を取得
         paths = pathData.pathTranArray.Select(x => x.position).ToArray();
 
         // 各地点に向けて移動
         transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear);
+    }
+
+
+    void Update()
+    {
+        // 敵の進行方向を取得
+        ChangeAnimeDirection();
+    }
+
+
+    /// <summary>
+    /// 敵の進行方向を取得して、移動アニメと同期
+    /// </summary>
+    private void ChangeAnimeDirection()
+    {
+
+        if (transform.position.x < currentPos.x)
+        {
+            anim.SetFloat("Y", 0f);
+            anim.SetFloat("X", -1.0f);
+
+            Debug.Log("左方向");
+        }
+        else if (transform.position.y > currentPos.y)
+        {
+            anim.SetFloat("X", 0f);
+            anim.SetFloat("Y", 1.0f);
+
+            Debug.Log("上左向");
+        }
+        else if (transform.position.y < currentPos.y)
+        {
+            anim.SetFloat("X", 0f);
+            anim.SetFloat("Y", -1.0f);
+
+            Debug.Log("下方向");
+        }
+        else
+        {
+            anim.SetFloat("Y", 0f);
+            anim.SetFloat("X", 1.0f);
+
+            Debug.Log("右方向");
+        }
+
+        // 現在の位置情報を保持
+        currentPos = transform.position;
     }
 }
