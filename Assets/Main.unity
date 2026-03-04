@@ -4928,6 +4928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1558051167}
+  - component: {fileID: 1558051168}
   m_Layer: 0
   m_Name: 'PathTranSet '
   m_TagString: Untagged
@@ -4959,6 +4960,29 @@ Transform:
   - {fileID: 1967372926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1558051168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558051166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1097f077cdf28d34db0de3193136c89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PathData
+  generateTran: {fileID: 1660619768}
+  pathTranArray:
+  - {fileID: 1660619768}
+  - {fileID: 1144175628}
+  - {fileID: 650944893}
+  - {fileID: 1221174846}
+  - {fileID: 548495365}
+  - {fileID: 1224035644}
+  - {fileID: 2122456366}
+  - {fileID: 1967372926}
+  - {fileID: 1295022324}
 --- !u!1 &1660619767
 GameObject:
   m_ObjectHideFlags: 0
