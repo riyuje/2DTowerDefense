@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2730980695575426808}
   - component: {fileID: 1383378047482983756}
   - component: {fileID: 2312768078376089501}
-  - component: {fileID: 4101263693127103615}
+  - component: {fileID: 2953211179287774109}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -114,7 +114,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4101263693127103615
+--- !u!114 &2953211179287774109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4a80bfa4bbb1b448f0887a353217f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  pathData: {fileID: 0}
+  pathData: {fileID: 1838853355147306654, guid: 69ed77e6c9804764290677287e3b3778, type: 3}
   moveSpeed: 30

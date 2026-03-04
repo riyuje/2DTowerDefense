@@ -15,14 +15,10 @@ public class EnemyController : MonoBehaviour
 
     private Vector3[] paths;
 
-    private Animator anim;　　　　　　 // Animator コンポーネントの取得用
-
-    private Vector3 currentPos;    // 敵キャラの現在の位置情報
-
+    private Animator anim;       // Animator コンポーネントの取得用
 
     void Start()
     {
-
         // Animator コンポーネントを取得して anim 変数に代入
         TryGetComponent(out anim);
 
@@ -30,43 +26,49 @@ public class EnemyController : MonoBehaviour
         paths = pathData.pathTranArray.Select(x => x.position).ToArray();
 
         // 各地点に向けて移動
-        transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear);
-    }
+        transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection);  //  <=  ３つ目のメソッドを追加します。
 
 
-    void Update()
-    {
-        // 敵の進行方向を取得
-        ChangeAnimeDirection();
     }
 
 
     /// <summary>
     /// 敵の進行方向を取得して、移動アニメと同期
     /// </summary>
-    private void ChangeAnimeDirection()
-    {
+    private void ChangeAnimeDirection(int index)
+    {　　　　　　//　<=　☆①　引数を追加します
 
-        if (transform.position.x < currentPos.x)
+        Debug.Log(index);                   //　<=　☆②　ここから if 文全文を追加します
+
+        // 次の移動先の地点がない場合には、ここで処理を終了する
+        if (index >= paths.Length)
         {
+            return;
+        }　　　　　　　　　　　　　　　　　　　　　　　　　　 //　<=　☆②　ここまで
+
+        if (transform.position.x > paths[index].x)
+        {　　　　　//　<=　☆③　条件式の右辺を変更します。演算子の方向に注意してください
             anim.SetFloat("Y", 0f);
             anim.SetFloat("X", -1.0f);
 
             Debug.Log("左方向");
+
         }
-        else if (transform.position.y > currentPos.y)
-        {
+        else if (transform.position.y < paths[index].y)
+        {　 //　<=　☆④　条件式の右辺を変更します。演算子の方向に注意してください
             anim.SetFloat("X", 0f);
             anim.SetFloat("Y", 1.0f);
 
             Debug.Log("上左向");
+
         }
-        else if (transform.position.y < currentPos.y)
-        {
+        else if (transform.position.y > paths[index].y)
+        {　 //　<=　☆⑤　条件式の右辺を変更します。演算子の方向に注意してください
             anim.SetFloat("X", 0f);
             anim.SetFloat("Y", -1.0f);
 
             Debug.Log("下方向");
+
         }
         else
         {
@@ -75,8 +77,5 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log("右方向");
         }
-
-        // 現在の位置情報を保持
-        currentPos = transform.position;
     }
 }
