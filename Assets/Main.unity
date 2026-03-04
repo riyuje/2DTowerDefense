@@ -2940,6 +2940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharaGenerator
   charaPrefab: {fileID: 8859794534369416376, guid: 553c28abf4a74964ea1ed402cb75ff7d, type: 3}
   grid: {fileID: 1111229967}
+  tilemaps: {fileID: 908618688}
 --- !u!4 &162986025
 Transform:
   m_ObjectHideFlags: 0
